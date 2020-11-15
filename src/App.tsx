@@ -1,20 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import './App.css';
-import Child from './components/Child'
+import TaskList from './components/TaskList'
+import TaskInput from './components/TaskInput'
+import { Task } from './Types'
 
+
+const initialState: Task[] = [
+  {
+    id:2,
+    title: '次のTodo',
+    done: false
+  },{
+    id:1,
+    title: '最初のTodo',
+    done: true
+  }
+]
 
 
 const App: React.FC =() => {
-
-  const [message, setMessage ] = useState<string>('');
-  const handleMessage = (e:React.ChangeEvent<HTMLInputElement>) => {
-    setMessage(e.target.value);
-  }
-
+  const [tasks, setTasks] = useState(initialState)
   return (
     <div className="App">
-      <p>{message}</p>
-      <input type="text" value={message} onChange={handleMessage}/>
+      <TaskInput />
+      <TaskList tasks={tasks} />
     </div>
   );
 }
