@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import Child from './components/Child'
 
@@ -6,9 +6,15 @@ import Child from './components/Child'
 
 const App: React.FC =() => {
 
+  const [message, setMessage ] = useState<string>('');
+  const handleMessage = (e:React.ChangeEvent<HTMLInputElement>) => {
+    setMessage(e.target.value);
+  }
+
   return (
     <div className="App">
-      <Child message="子コンポーネント"><h1>チルドレンで表示</h1></Child>
+      <p>{message}</p>
+      <input type="text" value={message} onChange={handleMessage}/>
     </div>
   );
 }
